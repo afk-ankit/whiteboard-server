@@ -25,6 +25,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(8000, () => {
+server.listen(process.env.PORT || 800, () => {
   console.log("server running at http://localhost:8000 🔥");
 });
