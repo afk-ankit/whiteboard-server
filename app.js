@@ -26,7 +26,6 @@ app.get("/", (_, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { password, email } = req.body;
-    console.log(req.body);
     const user = await User.findOne({ email: email });
     if (!user) {
       throw new Error("User doesn't exist");
@@ -86,7 +85,6 @@ let drawings = new Map(); // Map to store sessionId: [drawings]
 
 io.on("connection", (socket) => {
   console.log("someone connected");
-  console.log(drawings);
   socket.on("create-session", () => {
     let sessionId = uuidv4();
     sessions.set(sessionId, [socket.id]);
@@ -129,7 +127,6 @@ io.on("connection", (socket) => {
         socketIds.splice(index, 1);
       }
       if (socketIds.length === 0) {
-        console.log(drawings);
         sessions.delete(sessionId);
         drawings.delete(sessionId);
       }
