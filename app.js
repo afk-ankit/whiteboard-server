@@ -1,7 +1,7 @@
 import http from "http";
 import express from "express";
 import { Server } from "socket.io";
-// import cors from "cors";
+import cors from "cors";
 import { v4 as uuidv4 } from "uuid";
 import "dotenv/config";
 
