@@ -1,7 +1,7 @@
 import http from "http";
 import express from "express";
 import { Server } from "socket.io";
-import cors from "cors";
+// import cors from "cors";
 import { v4 as uuidv4 } from "uuid";
 import "dotenv/config";
 
@@ -10,7 +10,7 @@ app.use(cors());
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: "http://92.168.155.187:5173/",
+  cors: process.env.FRONTEND_URL || "http://92.168.155.187:5173/",
 });
 
 let sessions = new Map(); // Map to store sessionId: [socketIds]
