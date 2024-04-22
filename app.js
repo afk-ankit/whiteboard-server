@@ -26,7 +26,9 @@ app.get("/", (_, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { password, email } = req.body;
+    console.log(email);
     const user = await User.findOne({ email: email });
+    console.log(user);
     if (!user) {
       throw new Error("User doesn't exist");
     } else {
@@ -59,7 +61,7 @@ app.post("/register", async (req, res) => {
       username,
     });
     const data = await newUser.save();
-    res.send(201).send(data);
+    res.status(201).send(data);
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
